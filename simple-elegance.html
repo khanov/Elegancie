@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{Title}</title>
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+	{block:Description}
+        <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
+  
+    <!-- DEFAULTS -->
+    <meta name="text:Title" content="Elegancie"/>
+    <meta name="text:Footer Text" content="&copy; Elegancie 2013"/>
+    
+    <meta name="color:Background" content="#FFF"/>
+    <meta name="color:Text" content="#222"/>
+    <meta name="color:Accent Color" content="#000"/>
+    <meta name="color:Link Hover" content="#45a6db"/>
+    <meta name="color:Quote" content="#888"/>
+    <meta name="color:Navigation Background" content="#2b2b2b"/>
+    <meta name="color:Navigation Link Hover" content="#51c2ff"/>
+    <meta name="color:Post Meta" content="#888"/>
+    
+    <style type="text/css" media="screen">
+    	body { 
+	    	font-family: "Gill Sans", "Gill Sans MT", Verdana, Calibri, sans-serif; 
+	    	font-size: 18px;
+	    	font-weight: 200;
+	    	line-height: 27px;
+	    	color: {color:Text};
+	    	background: {color:Background};
+	    }
+	    a, a:visited, a:active { 
+	    	color: {color:Accent Color}; 
+	    	transition: all 0.3s linear; 
+	    	-webkit-transition: all 0.3s linear; 
+	    	-moz-transition: all 0.3s linear; 
+	    	-o-transition: all 0.3s linear; 
+	    	text-decoration: none; 
+	    	border-bottom: 1px solid #dbdbdb; 
+	    }
+	    a:hover { 
+	    	color: {color:Link Hover}; 
+	    	border-bottom: 1px solid #c7d5ff; 
+	    }
+	    ::selection { background: {color:Accent Color}; color: {color:Background}; text-shadow: none; }
+	    
+	    blockquote { border-left:2px solid {color:Quote}; color:{color:Quote}; margin:0 1em 1.5em; padding:0 1em; }
+	    p { margin:0 0 1em }
+	    ul, ol { margin:0 0 1.5em; padding-left:2.5em }
+	    img {
+		    display: block;
+		    border: 6px solid #fff;
+		    -webkit-box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+		    -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+		    padding: 0px;
+		    max-width: 31em;
+		    margin-top: 20px;
+		    margin-bottom: 20px;
+		}
+	    
+	    /* LAYOUT */
+	    #container { margin:0 auto; min-width:500px; width:32em; }
+	    
+	    /* HEADER */
+	    #header { 
+	    	padding-bottom: 2.9em; 
+	    }
+	    #header h1 { 
+	    	font-size: 2em; 
+	    	font-weight: 600; 
+	    	margin: 1.6em 0 0; 
+	    	padding: 0; 
+	    }
+	    #header h1 a { 
+	    	border: none; 
+	    	color: {color:Accent Color}; 
+	    	text-decoration:none; 
+	    	transition: all 0.3s linear; 
+	    	-webkit-transition: all 0.3s linear; 
+	    	-moz-transition: all 0.3s linear; 
+	    	-o-transition: all 0.3s linear; 
+	    }
+	    #header h1 a:hover {
+	    	color: #444; 
+	    }
+	    
+	    #header #navigation { 
+	    	float: right; 
+	    	list-style: none; 
+	    	margin: 0; 
+	    	padding: 0;
+	    }
+	    #header #navigation li { 
+	    	display: inline-block; 
+	    	margin: 0 0.25em; 
+	    	background: {color:Navigation Background};
+	    	color: {color:Background};
+	    	border-radius: 5px;
+	    	-moz-border-radius: 5px;
+	    	-webkit-border-radius: 5px;
+	    }
+	    #header #navigation a { 
+	    	color: {color:Background};
+	    	text-decoration: none;
+	    	border-bottom: none;
+	    	transition: all 0.3s linear; 
+	    	-webkit-transition: all 0.3s linear; 
+	    	-moz-transition: all 0.3s linear; 
+	    	-o-transition: all 0.3s linear;
+	    	font-size: 1.0em; 
+	    	line-height: 1.5em; 
+	    	font-weight: 400;
+	    	padding: 0.5em; 
+	    	text-decoration: none;
+	    }
+	    #header #navigation a:hover { 
+	    	color: {color:Navigation Link Hover}; 
+	    	text-decoration: none;
+	    }
+	    
+	    /* POSTS */
+	    #posts { clear: left; }
+	    .text, .link, .quote, .photo, .video, .audio, .chat, .photoset-post { border-bottom: 1px solid #efefef; margin-bottom: 4.5em; }
+	    .link h2 a { font-size: 0.7em; }
+	    .link .link-description { margin:0 0 1.5em; }
+	    .quote .words { border:0; color:{color:Accent Color}; font: normal 1.2em/1.3 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; margin: 0 0 1em; padding: 0; }
+	    .quote .source { color: {color:Quote}; font-style: italic; }
+	    .photo, .video, .photoset-post { text-align: center; }
+	    .photo .caption, .video .caption, .audio .caption, .quote .source, .photoset-post .caption { clear: right; margin-bottom: 1.5em; margin-top: 0.75em; text-align: left; }
+	    .chat ul.convo { list-style-type: none; padding: 0; }
+	    .chat ul.convo li { line-height: 2; }
+	    .chat ul.convo li .person { font-weight: bold; }
+	    .chat ul.convo li.even .person {color:{color:Accent};}
+	    .audio .playcount { float: right; }
+	    .video-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 */ padding-top: 25px; height: 0; }
+	    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+	    
+	    /* POST FOOTERS */
+	    .post-footer { list-style:none; color: {color:Post Meta}; font-size:0.9em; margin:0 0 3em; padding:0; text-align:right; }
+	    .post-footer li { display:inline; margin-left:1em; padding:0; }
+	    .post-footer h3 { font-size: 0.9em; font-weight: 200; line-height: 1em; }
+	    
+	    /* REBLOG */
+	    .post-footer li.reblog { color:{color:Post Meta}; display:block; font-style:italic; margin-bottom:0.25em; }
+	    .post-footer li.date h3 { color:{color:Post Meta}; display:inline; }
+    
+	    /* TAGS */
+	    .post-footer li.tags ul, .post-footer li.tags ul li { display:inline; padding: 0; }
+	    .post-footer li.tags ul li { margin-left: 0.4em; }
+	
+	    /* NOTES */
+	    ol.notes { margin: 0; padding: 0; }
+	    ol.notes li.note { margin: 0 0 0.75em 0; padding: 0 0 0.75em 0; }
+	    ol.notes img.avatar { display: none; }
+
+	    /* PAGINATION */
+	    #pagination { width: 400px; margin-left: auto; margin-right: auto; margin-bottom: 1.5em; }
+	    #pagination #pagecount { color:{color:Post Meta}; margin:0 1.5em; }
+
+	    /* FOOTER */
+	    #footer { float:left; overflow:visible; padding:0 0 1.5em; width:100%; }
+	    #footer a { text-decoration:none; }
+	    #footer a:hover { color: #888; }
+	    #footer h3 { border-bottom:1px solid #888; color:#888; font-size:1.5em; margin:2em 0 0.25em; }
+	    #footer ul { list-style:none;padding:0; }
+	    #footer ul li { line-height:2; }
+    
+	    /* FOLLOWING LIST */
+	    #footer #following li { line-height: 30px; display: inline; }
+
+	    /* FOOTER LAYOUT */ 
+	    #footer-contain { margin:0 auto; padding:0; width:300px; text-align: center; font-size: 15px; line-height: 22px; color: {color:Post Meta}; }
+	    #footer-contain a { color: {color:Post Meta}; }
+	    #footer-left { float:left; width:15em; }
+	    #footer-middle { float:left; margin-left:2.5em; width:15em; }
+	    #footer-right { float:left; margin-left:2.5em; width:15em; }
+    
+	    /* SEARCH */
+	    #search input { display:inline; }
+	    #searchresultcount { font-style:italic; margin: 3em 0;text-align: center; }
+	    #searchresultcount .query { font-weight:bold; }
+    
+	    .search_query, .tag { font-weight: bold; }
+    </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="header">
+      <ul id="navigation">
+        {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+        {block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
+        {block:SubmissionsEnabled}<li><a href="/submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+      </ul>
+      
+      <h1><a href="/">{text:Title}</a></h1>
+    </div> <!-- end #header -->
+  
+    <div id="posts">
+    {block:SearchPage}
+    <div id="searchresultcount">
+      {block:SearchResults}
+        <p>{lang:Your search for SearchQuery returned SearchResultCount results 2}</p>
+      {block:SearchResults}
+    
+      {block:NoSearchResults}
+        <p>{lang:No search results for SearchQuery 2}</p>
+      {block:NoSearchResults}
+    </div>
+    {/block:SearchPage}
+      
+    {block:Posts}
+      {block:Text}
+      <div class="text">
+        {block:Title}<h2>{Title}</h2>{/block:Title}
+        {Body}
+      {/block:Text}
+
+      
+      {block:Quote}
+      <div class="quote">
+        <blockquote class="words">&#8220;{Quote}&#8221;</blockquote>
+        {block:Source}<div class="source">{Source}</div>{/block:Source}
+      {/block:Quote}
+
+
+      {block:Link}
+      <div class="link">
+        <h2><a href="{URL}" {Target}>{Name}</a></h2>
+        {block:Description}
+        <div class="link-description">
+          {Description}
+        </div>
+        {/block:Description}
+      {/block:Link}
+
+      
+      {block:Video}
+      <div class="video">
+        <div class="video-wrapper">{Video-700}</div>
+        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+      {/block:Video}
+      
+
+      
+      {block:Audio}
+      <div class="audio">
+        <span class="playcount">{lang:Played PlayCount times}</span>
+        {AudioPlayerBlack}
+        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+      {/block:Audio}
+
+      
+      {block:Photo}
+      <div class="photo">
+        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+      {/block:Photo}
+
+			{block:Photoset}
+			<div class="photoset-post">
+				{Photoset-500}
+				{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+			{/block:Photoset}
+      
+      
+      {block:Chat}
+      <div class="chat">
+        {block:Title}<h2>{Title}</h2>{/block:Title}
+        <ul class="convo">
+          {block:Lines}
+          <li class="{Alt}">
+            <span class="person">{block:Label}{Label}{/block:Label}</span>
+            <span class="line">{Line}</span>
+          </li>
+          {/block:Lines}
+        </ul>
+      {/block:Chat}
+      
+        <ul class="post-footer">
+          {block:NotReblog}{block:ContentSource}<li class="reblog">Source: <a rel="nofollow" href="{SourceURL}">{SourceTitle}</a></li>{/block:ContentSource}{/block:NotReblog}
+          {block:RebloggedFrom}<li class="reblog">{lang:Reblogged from ReblogParentTitle 2}</li>{/block:RebloggedFrom}
+          {block:Date}<li class="date"><h3>{Month} {DayOfMonthWithZero}, {Year}, {12Hour}:{Minutes}{AmPm}{/block:Date}</h3>{block:IfShowNotes}{block:NoteCount}<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{NoteCountWithLabel}</h3>{/block:NoteCount}{/block:IfShowNotes}</li>
+          {block:Date}
+          <li><a href="{Permalink}" class="permalink">Permalink</a></li>
+		  {block:IfDisqusShortname}<li><a href="{Permalink}#disqus_thread" class="permalink">{lang:Comments}</a></li>{block:IfDisqusShortname}
+          {/block:Date}
+        </ul>
+      </div> <!-- end single post -->
+      {/block:Posts}
+
+      {block:Permalink}
+      {block:IfShowNotes}
+      {block:PostNotes}
+      <h4>{lang:Notes}</h4>
+      {PostNotes}
+      {block:PostNotes}
+      {/block:IfShowNotes}
+      
+	  {block:IfDisqusShortname}
+      <div id="disqus_thread"></div>
+      <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+      <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+      {/block:IfDisqusShortname}
+      {/block:Permalink}
+    </div> <!-- end posts -->
+    
+    {block:Pagination}
+    <div id="pagination">
+      {block:NextPage}<a href="{NextPage}">&larr; {lang:Older entries}</a>{/block:NextPage}
+      <span id="pagecount">{lang:Page CurrentPage of TotalPages}</span>
+      {block:PreviousPage}<a href="{PreviousPage}">{lang:Newer Entries} &rarr;</a>{/block:PreviousPage}
+    </div>
+    {/block:Pagination}
+    
+  </div> <!-- end container -->
+  
+  
+  <div id="footer">
+    <div id="footer-contain">
+      {text:Footer Text} <br>
+      <a href="http://khanov.me/portfolio/elegancie/">Elegancie Theme</a> by <a href="http://khanov.me" title="Salavat Khanov">Salavat Khanov</a>
+    </div> <!-- end footer contain -->
+  </div> <!-- end footer -->
+</body>
+</html>
